@@ -30,7 +30,7 @@ function EnterForm({
     console.log(accounts)
 
     const etherAmount = web3.utils.toWei(value, 'ether')
-    setMessage('Waiting for transaction success')
+    setMessage('Waiting for transaction success...')
 
     await contract?.methods.enter().send({
       from: accounts[0],
@@ -56,7 +56,9 @@ function EnterForm({
             value={value}
           />
         </div>
-        <button type="submit">Enter</button>
+        <button type="submit" className="border border-white mt-3 py-1 px-6">
+          Enter
+        </button>
       </div>
     </form>
   )

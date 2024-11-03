@@ -50,6 +50,18 @@ function HomePageLogic() {
     return <div>Loading...</div>
   }
 
+  const handleClick = async () => {
+    const accounts = await web3.eth.getAccounts()
+
+    setMessage('Waiting for transaction success...')
+
+    await contract?.methods.pickWinner().send({
+      from: accounts[0],
+    })
+
+    setMessage('A winner has been picked!')
+  }
+
   return (
     <>
       <h1>Lottery Contract</h1>
@@ -70,6 +82,14 @@ function HomePageLogic() {
           setMessage={setMessage}
         />
       </div>
+
+      <h4>Ready to pick a winner?</h4>
+      <button
+        onClick={handleClick}
+        className="border border-white mt-3 py-1 px-6"
+      >
+        Pick a winner
+      </button>
 
       <h1>{message}</h1>
     </>
