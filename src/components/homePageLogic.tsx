@@ -5,6 +5,7 @@ import web3 from '@/web3/web3'
 import React, { useEffect, useState } from 'react'
 import EnterForm from './enterForm'
 import { Contract, ContractAbi } from 'web3'
+import { Button } from './ui/button'
 
 function HomePageLogic() {
   const [manager, setManager] = useState<string>('')
@@ -64,15 +65,20 @@ function HomePageLogic() {
 
   return (
     <>
-      <h1>Lottery Contract</h1>
-      <p>This contract is managed by: {manager}</p>
-      <p>
-        There are currently {players.length} people entered into the lottery
-      </p>
-      <p>
-        The lottery pool that is up for grabs is{' '}
-        {Number(web3.utils.fromWei(balance, 'ether')).toString()} Eth
-      </p>
+      <h1 className="text-4xl font-bold mb-2">Lottery Contract</h1>
+      <p className="mb-10">This contract is managed by: {manager}</p>
+      <div className="flex  justify-center flex-row gap-8 mb-8">
+        <div className="border rounded-lg p-4">
+          <p className="text-sm text-muted-foreground">People Entered</p>
+          <p className="text-3xl font-bold">{players.length}</p>
+        </div>
+        <div className="border rounded-lg p-4">
+          <p className="text-sm text-muted-foreground">Lottery Pool</p>
+          <p className="text-3xl font-bold">
+            {Number(web3.utils.fromWei(balance, 'ether')).toString()} ETH
+          </p>
+        </div>
+      </div>
       <div>
         <EnterForm
           value={value}
@@ -83,15 +89,14 @@ function HomePageLogic() {
         />
       </div>
 
-      <h4>Ready to pick a winner?</h4>
-      <button
-        onClick={handleClick}
-        className="border border-white mt-3 py-1 px-6"
-      >
-        Pick a winner
-      </button>
+      <div className="mt-10 border rounded p-3 flex flex-col items-center justify-center max-w-md mx-auto">
+        <h4>Ready to pick a winner?</h4>
+        <Button variant={'outline'} onClick={handleClick} className="mt-4">
+          Pick a winner
+        </Button>
 
-      <h1>{message}</h1>
+        <h1 className="text-xl mt-4">{message}</h1>
+      </div>
     </>
   )
 }

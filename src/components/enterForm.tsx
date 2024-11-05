@@ -1,6 +1,8 @@
 import web3 from '@/web3/web3'
 import React from 'react'
 import { Contract, ContractAbi } from 'web3'
+import { Button } from './ui/button'
+import { Input } from './ui/input'
 
 type EnterFormProps = {
   value: string
@@ -41,24 +43,25 @@ function EnterForm({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="p-3 border rounded max-w-md mx-auto"
+    >
       <h4>Want to try your luck?</h4>
-      <div className="flex flex-col items-center">
-        <div>
-          <label htmlFor="value" className="mr-6">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-full">
+          <label htmlFor="value" className="block mb-2">
             Amount of Ethereum to enter
           </label>
-          <input
-            className="text-black p-1"
+          <Input
+            className="text-black p-1 w-auto mx-auto"
             id="value"
             type="number"
             onChange={(e) => setValue(e.target.value)}
             value={value}
           />
         </div>
-        <button type="submit" className="border border-white mt-3 py-1 px-6">
-          Enter
-        </button>
+        <Button type="submit">Enter</Button>
       </div>
     </form>
   )
