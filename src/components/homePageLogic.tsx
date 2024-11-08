@@ -89,6 +89,7 @@ function HomePageLogic() {
         />
       </div>
 
+      {/* Pick a winner button */}
       <div className="mt-10 border rounded p-3 flex flex-col items-center justify-center max-w-md mx-auto">
         <h4>Ready to pick a winner?</h4>
         <Button variant={'outline'} onClick={handleClick} className="mt-4">
